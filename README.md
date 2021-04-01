@@ -8,6 +8,6 @@ Contains many C standard-like functions for management, such as
 * exlen
 * exchr
 
-To use exstring, put exstring.c and exstring.h in your source directory. Also bring the license for non-binary builds.
+To use exstring, put exstring.c and exstring.h in your source directory.
 
 exstring is licensed under the Boost Software License, copyright 2021 Vaughan Milliman.
