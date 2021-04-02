@@ -77,17 +77,17 @@ exString* excpy(exString* dest, const exString* src)
 };
 exString* exchr(const exString* ex, const char c)
 {
-	int i = 1;
+	int i = 0;
 	exString* ret;
 	ret->string = NULL;
 	ret->size = 0;
 	while(i <= ex->size && ret->size == 0 && ret->string == NULL)
 	{
-		if (*ret->string == c)
+		if (ex->string[i] == c)
 		{
-			ret->size = ex->size - (i - 1);
+			ret->size = ex->size - i;
 			ret->string = malloc(ret->size);
-			strncpy(ret->string, ex->string + (i - 1), ret->size);
+			strncpy(ret->string, ex->string + i, ret->size);
 		}
 		else
 			++i;
@@ -100,4 +100,34 @@ exString* exchr(const exString* ex, const char c)
 size_t exlen(const exString* ex)
 {
 	return ex->size;
+};
+exString* exstr(const exString* needle, const exString* haystack)
+{
+	int i = 0;
+	signed char c = 0;
+	exString* ret;
+	ret->size = 0;
+	ret->string = NULL;
+	if (haystack->size < needle->size)
+		return NULL;
+	while(i < (haystack->size - needle->size) && ret->string == NULL && ret->size == 0)
+	{
+		for(int k = 0; needle->string[k] == haystack->string[i + k] || k == -1; ++k)
+			if (k >= needle->size) {
+				k = -1;
+				c = -1;
+			};
+		if(c == 0)
+		{
+			ret->size = haystack->size - i;
+			ret->string = malloc(ret->size);
+			strncpy(haystack->string + i, ret->string, ret->size);
+		}
+		else
+			++i;
+	}
+	if(ret->string == NULL || ret->size == 0)
+		return NULL;
+	else
+		return ret;
 };

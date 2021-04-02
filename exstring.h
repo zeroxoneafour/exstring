@@ -57,7 +57,8 @@ char* exToStr(const exString* exStr); // Ex String to C string
 
 exString* excat(exString* dest, const exString* src); // strcat
 exString* excpy(exString* dest, const exString* src); // strcpy
-exString* exchr(const exString* ex, char c); // strchr
+exString* exchr(const exString* ex, const char c); // strchr
+exString* exstr(const exString* needle, const exString* haystack); // strstr
 size_t exlen(const exString* ex); // strlen
 
 #endif // EXSTRING_EX_H
